@@ -1,0 +1,70 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateRektTables extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+
+        $tableNames = config('rekt.table_names');
+
+        Schema::create($tableNames['banned_users'], function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->text('reason');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
+        });
+
+
+        Schema::create($tableNames['suspended_users'], function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->text('reason');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
+        });
+
+        Schema::create($tableNames['appeals'], function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('type_id');
+            $table->string('type');
+            $table->string('status');
+            $table->text('reason');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
+        });
+
+        Schema::create($tableNames['user_strikes'], function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->text('reason');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        $tableNames = config('rekt.table_names');
+
+        Schema::dropIfExists($tableNames['user_strikes']);
+        Schema::dropIfExists($tableNames['appeals']);
+        Schema::dropIfExists($tableNames['suspended_users']);
+        Schema::dropIfExists($tableNames['banned_users']);
+    }
+}

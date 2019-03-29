@@ -1,0 +1,38 @@
+{
+    "name": "tysweezy/laravel-rekt",
+    "description": "A laravel package for handling user account moderation.",
+    "authors": [
+        {
+            "name": "tysweezy",
+            "email": "tsouza.sf@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^5.8",
+        "illuminate/database": "^5.8",
+        "illuminate/config": "^5.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rekt\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rekt\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rekt\\RektServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "mockery/mockery": "^1.2",
+        "orchestra/testbench": "^3.5"
+    }
+}
