@@ -1,12 +1,12 @@
 <?php
 
-namespace Rekt\Models;
+namespace Tysweezy\Rekt\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class BannedUser extends Model {
    
-    public $guared = ['id'];
+    public $guarded = ['id'];
 
     public function users() 
     {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Rekt\Models;
+namespace Tysweezy\Rekt\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Appeal extends Model {
    
-    public $guared = ['id'];
+    public $guarded = ['id'];
 
     public function users() 
     {

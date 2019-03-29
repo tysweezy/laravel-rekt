@@ -1,7 +1,8 @@
 <?php
 
-namespace Rekt;
+namespace Tysweezy\Rekt\Traits;
 
+use Tysweezy\Rekt\Models\UserStrike;
 use Illuminate\Database\Eloquent\Builder;
 
 trait Rektable {
@@ -9,24 +10,33 @@ trait Rektable {
     /**
      * Add a strike to user
      *
-     * @param integer $userId
      * @param array $data
      * @return Builder
      */
-    public function addStrike(int $userId, $data = [])
+    public function addStrike(array $data)
     {
-        // 
+        if (!isset($this)) {
+            // throw a custom exception
+        } 
+
+        $strike = UserStrike::create([
+            'user_id' => $this->id,
+            'reason'  => $data['reason']
+        ]);
+
+        return $strike;
     }
     
     /**
      * Get strike count for user
      *
-     * @param integer $userId
      * @return Builder
      */
-    public function strikeCount(int $userId) 
+    public function strikeCount() 
     {
-        //    
+        return count(
+            UserStrike::where('user_id', $this->id)->get()
+        );
     }
 
     /**

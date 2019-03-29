@@ -15,18 +15,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Rekt\\": "src"
+            "Tysweezy\\Rekt\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rekt\\Tests\\": "tests"
+            "Tysweezy\\Rekt\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Rekt\\RektServiceProvider"
+                "Tysweezy\\Rekt\\RektServiceProvider"
             ]
         }
     },

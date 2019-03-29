@@ -1,6 +1,6 @@
 <?php
 
-namespace Rekt;
+namespace Tysweezy\Rekt;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -8,6 +8,7 @@ class RektServiceProvider extends ServiceProvider {
     
     public function boot()
     {
+
         // publish config file
         $this->publishes([
             __DIR__.'/../config/rekt.php' => config_path('rekt.php'),
@@ -18,16 +19,17 @@ class RektServiceProvider extends ServiceProvider {
         
         $this->publishes([
             __DIR__.'/../database/migrations/create_rekt_tables.php.stub' 
-                => $this->app->databasePath()."/migrations/{timestamp}_create_rekt_tables.php"
+                => $this->app->databasePath()."/migrations/{$timestamp}_create_rekt_tables.php"
         ], 'migrations');
     }
 
 
     public function register()
     {
-        $this->mergeConfigFrom([
-            __DIR__.'/../config/rekt.php'
-        ], 'rekt');
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/rekt.php',
+            'rekt'
+        );
     }
 
 }
